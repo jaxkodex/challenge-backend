@@ -1,0 +1,16 @@
+#security.oauth2.resource.jwk.key-set-uri: https://www.googleapis.com/service_accounts/v1/metadata/x509/securetoken@system.gserviceaccount.com
+security:
+  oauth2:
+    resource:
+      jwk:
+        key-set-uri: https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com
+
+spring:
+  profiles:
+    active: local
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG

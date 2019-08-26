@@ -1,0 +1,33 @@
+plugins {
+    id "io.freefair.lombok" version "4.0.0"
+	id 'org.springframework.boot' version '2.1.7.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+}
+
+group = 'pe.com.intercorp.retail'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.security.oauth:spring-security-oauth2:2.3.6.RELEASE'
+	implementation 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.1.7.RELEASE'
+	implementation 'org.springframework.security:spring-security-jwt:1.0.10.RELEASE'
+
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	implementation 'com.google.firebase:firebase-admin:6.9.0'
+	implementation 'io.springfox:springfox-swagger2:2.9.2'
+//	implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+}
