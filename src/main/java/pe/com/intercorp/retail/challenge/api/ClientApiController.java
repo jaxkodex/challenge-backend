@@ -14,6 +14,7 @@ import java.util.concurrent.CompletableFuture;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/clients")
+@CrossOrigin(origins = "http://localhost:4200", methods = { RequestMethod.GET, RequestMethod.POST})
 public class ClientApiController {
     private ClientService clientService;
 

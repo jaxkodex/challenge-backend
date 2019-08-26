@@ -11,6 +11,5 @@ spring:
 
 logging:
   level:
-    org:
-      springframework:
-        security: DEBUG
+    pe.com: DEBUG
+#    org.springframework.security: DEBUG
