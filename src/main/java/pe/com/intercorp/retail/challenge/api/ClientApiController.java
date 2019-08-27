@@ -20,7 +20,7 @@ import java.util.concurrent.CompletableFuture;
 public class ClientApiController {
     private ClientService clientService;
 
-    @ApiOperation(value = "Creación de cliente")
+    @ApiOperation(value = "Creación de cliente", response = Client.class)
     @PostMapping(consumes = "application/json", produces = "application/json")
     public CompletableFuture<ResponseEntity<Client>> create(@RequestBody @Valid Client client) {
         client.setId(null); // force the client creation and avoid unintended updates
@@ -32,7 +32,7 @@ public class ClientApiController {
                         .body(c));
     }
 
-    @ApiOperation(value = "Listado de clientes")
+    @ApiOperation(value = "Listado de clientes", response = ClientListResults.class)
     @GetMapping(produces = "application/json")
     public CompletableFuture<ResponseEntity<ClientListResults>> list(@RequestParam(defaultValue = "0") Integer page,
                                                                      @RequestParam(defaultValue = "20") Integer size) {
@@ -40,7 +40,7 @@ public class ClientApiController {
                 .thenApply(clientListResults -> ResponseEntity.ok(clientListResults));
     }
 
-    @ApiOperation(value = "KPIs de clientes")
+    @ApiOperation(value = "KPIs de clientes", response = ClientStats.class)
     @GetMapping(value = "/kpi", produces = "application/json")
     public CompletableFuture<ResponseEntity<ClientStats>> stats() {
         return clientService.stats()
