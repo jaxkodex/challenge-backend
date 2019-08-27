@@ -8,18 +8,18 @@ db.settings(settings);
 // [END_EXCLUDE]
 
 // [START aggregate_function]
-exports.aggregateRatings = functions.firestore
+exports.aggregateStats= functions.firestore
     .document('clients/{clientId}')
     .onWrite((change, context) => {
       // Get value of the newly added rating
       var birthDate = change.after.data().birthDate;
 
       // Get a reference to the restaurant
-      var restRef = db.collection('restaurants').doc(context.params.restId);
+      var clientRef = db.collection('clients').doc(context.params.clientId);
 
       // Update aggregations in a transaction
       return db.runTransaction(transaction => {
-        return transaction.get(restRef).then(restDoc => {
+        return transaction.get(clientRef).then(restDoc => {
           // Compute new number of ratings
           var newNumRatings = restDoc.data().numRatings + 1;
 
