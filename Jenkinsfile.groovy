@@ -3,9 +3,15 @@ node {
         checkout scm
     }
     stage('Unit & Integration Tests') {
-        sh './gradlew clean test --no-daemon'
+        withCredentials([file(credentialsID: 'firebase-credentials', variable: 'FILE')]) {
+            sh 'cp $FILE ./src/main/resources/'
+            sh './gradlew clean test --no-daemon'
+        }
     }
     stage('Build') {
-        sh './gradlew build --no-daemon'
+        withCredentials([file(credentialsID: 'firebase-credentials', variable: 'FILE')]) {
+            sh 'cp $FILE ./src/main/resources/'
+            sh './gradlew build --no-daemon'
+        }
     }
 }
