@@ -3,15 +3,12 @@ node {
         checkout scm
     }
     stage('Unit & Integration Tests') {
-        withCredentials([file(credentialsId: 'firebase-credentials', variable: 'FILE')]) {
-            sh 'echo $FILE'
-            sh 'cp $FILE ./src/main/resources/firebase.json'
+        withCredentials([file(credentialsId: 'firebase-credentials', variable: 'FIREBASE_CREDENTIALS')]) {
             sh './gradlew clean test --no-daemon'
         }
     }
     stage('Build') {
-        withCredentials([file(credentialsId: 'firebase-credentials', variable: 'FILE')]) {
-            sh 'cp $FILE ./src/main/resources/firebase.json'
+        withCredentials([file(credentialsId: 'firebase-credentials', variable: 'FIREBASE_CREDENTIALS')]) {
             sh './gradlew build --no-daemon'
         }
     }

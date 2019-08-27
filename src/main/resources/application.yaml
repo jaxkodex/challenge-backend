@@ -1,4 +1,7 @@
 #security.oauth2.resource.jwk.key-set-uri: https://www.googleapis.com/service_accounts/v1/metadata/x509/securetoken@system.gserviceaccount.com
+app:
+  data:
+    firebase-credentials: ${FIREBASE_CREDENTIALS}
 security:
   oauth2:
     resource:
