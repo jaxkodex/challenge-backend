@@ -15,8 +15,9 @@ node {
     stage('Deploy') {
         withCredentials([file(credentialsId: 'firebase-credentials', variable: 'FIREBASE_CREDENTIALS')]) {
             sh "sed 's|FBC_SRC|'$FIREBASE_CREDENTIALS'|g' Dockerfile.tpl > Dockerfile"
-            sh 'docker build -t challenge:1.0 .'
-            sh 'docker run -d challenge:1.0'
+            sh 'docker build -t jaxkodex/challenge-backend:1.0 .'
+            sh 'docker push jaxkodex/challenge-backend:1.0'
+//            sh 'docker run -d challenge:1.0'
         }
     }
 }

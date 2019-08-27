@@ -10,6 +10,7 @@ public class ResourceServiceConfiguration extends ResourceServerConfigurerAdapte
     @Override
     public void configure(HttpSecurity http) throws Exception {
         super.configure(http);
+        http.authorizeRequests().antMatchers("/v2/api-docs").permitAll();
         http.cors();
     }
 
