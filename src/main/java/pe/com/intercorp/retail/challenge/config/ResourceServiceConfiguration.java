@@ -9,8 +9,13 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 public class ResourceServiceConfiguration extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/v2/api-docs").permitAll()
+                .antMatchers("/swagger-ui.html").permitAll()
+                .antMatchers("/swagger-resources/**").permitAll()
+                .antMatchers("/webjars/**").permitAll();
+
         super.configure(http);
-        http.authorizeRequests().antMatchers("/v2/api-docs").permitAll();
         http.cors();
     }
 
