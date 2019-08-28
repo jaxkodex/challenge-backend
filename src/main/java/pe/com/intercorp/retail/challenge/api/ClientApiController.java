@@ -42,8 +42,9 @@ public class ClientApiController {
 
     @ApiOperation(value = "KPIs de clientes", response = ClientStats.class)
     @GetMapping(value = "/kpi", produces = "application/json")
-    public CompletableFuture<ResponseEntity<ClientStats>> stats() {
-        return clientService.stats()
+    public CompletableFuture<ResponseEntity<ClientStats>> stats(@RequestParam(defaultValue = "0") Integer page,
+                                                                @RequestParam(defaultValue = "20") Integer size) {
+        return clientService.stats(page*size, size)
                 .thenApply(stats -> ResponseEntity.ok(stats));
     }
 }

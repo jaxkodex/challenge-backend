@@ -27,8 +27,8 @@ public class ClientService {
         return clientRepository.list(startAt, size).thenApply(clients -> new ClientListResults(clients));
     }
 
-    public CompletableFuture<ClientStats> stats() {
-        return kpiRepository.get();
+    public CompletableFuture<ClientStats> stats(Integer startAt, Integer size) {
+        return kpiRepository.get(startAt, size);
     }
 
 }

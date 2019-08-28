@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,7 +14,7 @@ import java.math.BigDecimal;
 @ApiModel(description = "Representa las últimas estadísticas del cliente")
 public class ClientStats {
     @ApiModelProperty(value = "Edad promedio de los clientes", example = "24")
-    private BigDecimal average;
+    private Double average;
     @ApiModelProperty(value = "Desviación estandar de la edad de los clientes", example = "4")
-    private BigDecimal standardDeviation;
+    private Double standardDeviation;
 }
