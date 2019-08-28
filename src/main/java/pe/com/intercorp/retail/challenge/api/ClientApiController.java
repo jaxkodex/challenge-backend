@@ -20,12 +20,11 @@ import java.util.concurrent.CompletableFuture;
 public class ClientApiController {
     private ClientService clientService;
 
-    @ApiOperation(value = "Creación de cliente", response = Client.class)
+    @ApiOperation(value = "Creación de clientes", response = Client.class)
     @PostMapping(consumes = "application/json", produces = "application/json")
     public CompletableFuture<ResponseEntity<Client>> create(@RequestBody @Valid Client client) {
         client.setId(null); // force the client creation and avoid unintended updates
         ServletUriComponentsBuilder builder = ServletUriComponentsBuilder.fromCurrentRequest();
-
         return clientService.createOrUpdate(client)
                 .thenApply((Client c) -> ResponseEntity
                         .created(builder.pathSegment("{id}").build(c.getId().toString()))
